@@ -7,11 +7,12 @@ and a REST Web-Api backend project, powered by a MSSql database.
 
 The UI is a stand alone Blazor service web applications user interface for the Swagger documented backend web-api. <br/>The API-calls are secured with JWT Authentication and the back end project implements code first database migration functionality and repository pattern architecture.<br />
 
+## Technologies
+This demo covers uses the following technologies.<br/>
+.Net Core WebAPI, JWT Authentication, Swagger, Dapper, Database migration, Repository pattern, Blazor, Json, javascript, Bootstrap.
+
 ## Installation
 You will need access to a MSSQL databse server with Windows authentication access to run this out of the box in visual studio debuge mode and that the appsettings.json has the correct information for establishing a connection to your MSSQL server. Also make sure that make sure Sql Named pipes are enabled in Sql Server Configuration Manager.
-
-## Technologies
-.Net Core WebAPI, JWT Authentication, Swagger, Dapper, Database migration, Repository pattern, Blazor, Json, javascript.
 
 ## Instructions
 Load the project into Visual Studio 2022 or later and run in debug mode, if all is well, it will open the "BlazorDemo_BlazorUI" and the "WebAPi .Net Core with JWT authentication" pages.</br>
