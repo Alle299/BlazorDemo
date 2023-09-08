@@ -5,7 +5,12 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_BlazorUI", "BlazorDemo_BlazorUI\BlazorDemo_BlazorUI.csproj", "{73836BF7-1839-4D15-BCDC-97F8DBD95B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo_WebAPI", "BlazorDemo_WebAPI\BlazorDemo_WebAPI.csproj", "{B151733B-8825-4EBE-9F21-A60AFFC8A319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_WebAPI", "BlazorDemo_WebAPI\BlazorDemo_WebAPI.csproj", "{B151733B-8825-4EBE-9F21-A60AFFC8A319}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96BC1645-1DB9-4775-BA98-5992D375CEF4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
