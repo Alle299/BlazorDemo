@@ -1,0 +1,7 @@
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.csproj.AssemblyReference.cache
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.AssemblyInfoInputs.cache
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.AssemblyInfo.cs
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\allew\Source\Repos\CodeGenerator_IV\CodeGenerator_WebAPI\obj\Debug\net6.0\CodeGenerator_WebAPI.MvcApplicationPartsAssemblyInfo.cache

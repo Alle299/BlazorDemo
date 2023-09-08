@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\CodeGenerator_BlazorUI.props" />
+</Project>

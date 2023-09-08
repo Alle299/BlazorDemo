@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi_Core</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi_Core.Context.DapperContext">
+            <summary>
+            Dapper context class
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Context.DapperContext.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Dapper context class constructor.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:WebApi_Core.Context.DapperContext.CreateConnection">
+            <summary>
+            Get connectionstring from configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Context.DapperContext.CreateMasterConnection">
+            <summary>
+            Get connectionstring from configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._AuthController.Login(WebApi_Core.Models.LoginModel)">
+            <summary>
+            Uses username and pasword to retrieve the JWT bearer token.
+            </summary>
+            <remarks>
+            Upon successfull connection, grab the "jwtBearer" key in the response, <br />go to the green "Authorize" button att he top of the swagger page and paste it there like this "Bearer #####".
+            <br /><br />
+            Test Accouts:<br />
+             Username: AleWah<br />
+             Password: 299792<br />
+             User Role<br />
+            <br />
+             Username: AleWah2<br />
+             Password: 299792<br />
+             User Admin<br />
+            <br />
+             Username: AleWah3<br />
+             Password: 299792<br />
+             User SuperAdmin<br />
+            </remarks>
+            <response code="200">Success</response>
+            <response code="400">Invalid username or password.</response>
+        </member>
+        <member name="T:WebApi_Core.Controllers._RoleController">
+            <summary>
+            WebAPi Controller for the _Role database table.
+            url: /_role/
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.GetRoleNamesByUserId_Async(System.String)">
+            <summary>
+            Get role names by user Guid
+            </summary>
+            <remarks>
+            </remarks>
+            <response code="200">{\"TotalTax\":13}</response>
+            <response code="404">Error: Not Found</response>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.GetByEntityID_Async(System.String)">
+            <summary>
+            Get role by _Role Guid
+            </summary>
+            <remarks>
+            </remarks>
+            <response code="404">Error: Not Found</response>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.GetNumberOf_Roles_Async">
+            <summary>
+            Get total number of _Roles entities.
+            </summary>
+            <remarks>
+            </remarks>
+            <response code="404">Error: Not Found</response>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.All_Roles_Async">
+            <summary>
+            Get all _Role entities
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.add_role(WebApi_Core.Entities._Role)">
+            <summary>
+            Add _Role entity to database.
+            </summary>
+            <param name="_role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.update_role(WebApi_Core.Entities._Role)">
+            <summary>
+            Update existing _Role entity.
+            </summary>
+            <param name="_role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._RoleController.remove_role(WebApi_Core.Entities._Role)">
+            <summary>
+            Tag _Role entity as removed and by who and when.
+            </summary>
+            <param name="_role"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_Core.Controllers._TestController">
+            <summary>
+            WebAPi Contgroller for testing user roles.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Controllers._TestController.TestApi_NoRole">
+            <summary>
+            Quick test. Accessable to all.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._TestController.RoleTestApi_User">
+            <summary>
+            Quick test. Only accessable to useres with the User role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._TestController.RoleTestApi_Admin">
+            <summary>
+            Quick test. Only accessable to useres with the Admin role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._TestController.RoleTestApi_SuperAdmin">
+            <summary>
+            Quick test. Only accessable to useres with the SuperAdmin role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_Core.Controllers._UserController">
+            <summary>
+            WebAPi Controller for the _User database table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.Details(System.String)">
+            <summary>
+            Get User details by User Guid
+            </summary>
+            <remarks>
+            Example: entityID: c3bac6a4-db49-402d-8e49-9a36292064f4
+            </remarks>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.All_Users">
+            <summary>
+            Get all _Users
+            </summary>
+            <returns>List of _User entities</returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.add_User(WebApi_Core.Entities._User)">
+            <summary>
+            Add _User entity to database.
+            </summary>
+            <param name="_user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.update_User(WebApi_Core.Entities._User)">
+            <summary>
+            Update existing _User entity.
+            </summary>
+            <param name="_user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.Remove_User(WebApi_Core.Entities._User)">
+            <summary>
+            Tag _User entity as removed and by who and when.
+            </summary>
+            <param name="_user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserController.changepassword_User(WebApi_Core.Entities._User)">
+            <summary>
+            Update existing _User entity.
+            </summary>
+            <param name="_user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Controllers._UserRoleController.AddRangeWith_UserID_Async(WebApi_Core.Models.AdditionForForeignkey)">
+            <summary>
+            Clear current entities by _UserID and add list if _Role Giuds with single _User Guid.
+            </summary>
+            <param name="addition"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_Core.Helpers.ColorConsoleLoggerConfiguration">
+            <summary>
+            Configuration for multi color consol logging
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Migration.InitialTables_20220705001.Down">
+            <summary>
+            Downgrade database
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Migration.InitialTables_20220705001.Up">
+            <summary>
+            Upgrade database
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Models.AuthenticateModel">
+            <summary>
+            Class for the handling and processing of the login form.
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Models.LoginResult">
+            <summary>
+            Must match its counterpart innTierCoreTemplate.Blazor_AdminUI.Models
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories.AdoRepository`1.PopulateRecord(Microsoft.Data.SqlClient.SqlDataReader)">
+            <summary>
+            Empty function to be overriden by function in each repository
+            </summary>
+            <param name="reader"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_Core.Repositories.I_RoleRepository">
+            <summary>
+            Interface for data repository
+            
+            For security reasons data can not be destroyed, only tagged as removed.
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Repositories.I_UserRepository">
+            <summary>
+            Interface of the User entity repository
+            
+            For security reasons data can not be destroyed, only tagged as removed.
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Repositories.I_UserRoleRepository">
+            <summary>
+            Interface for data repository
+            
+            For security reasons data can not be destroyed, only tagged as removed.
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Repositories.RepositoryBase">
+            <summary>
+            Common functionality for all repositories
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Repositories._RoleRepository">
+            <summary>
+            Data repository for the _Setting table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.#ctor(System.String)">
+            <summary>
+            Data repository for the _Setting table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.GetRoleNamesByUserId_Async(System.String)">
+            <summary>
+            Get role names by _userID
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.GetRole_Special_Async(System.Linq.Expressions.Expression{System.Func{WebApi_Core.Entities._Role,System.Boolean}},System.Func{System.Linq.IQueryable{WebApi_Core.Entities._Role},System.Linq.IOrderedQueryable{WebApi_Core.Entities._Role}},System.Func{System.Linq.IQueryable{WebApi_Core.Entities._Role},System.Linq.IOrderedQueryable{WebApi_Core.Entities._Role}},System.String)">
+            <summary>
+            Special query function for costom needs
+            </summary>
+            <param name="filter"></param>
+            <param name="primaryOrderBy"></param>
+            <param name="secondaryOrderBy"></param>
+            <param name="includeProperties"></param>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.All_Async">
+            <summary>
+            Get all rows from _Role, Use only when you have no other choice.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.GetByEntityID_Async(System.String)">
+            <summary>
+            Get single _Role by its unique ID
+            </summary>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.Add_Async(WebApi_Core.Entities._Role,System.Guid)">
+            <summary>
+            Add _role entity to database.
+            </summary>
+            <param name="entity"></param>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.Remove_Async(WebApi_Core.Entities._Role,System.Guid)">
+            <summary>
+            Tag a _Role entity as removed and by who and when.
+            </summary>
+            <param name="entity"></param>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.Update_Async(WebApi_Core.Entities._Role,System.Guid)">
+            <summary>
+            Udate the _Role enitity and by who and when
+            </summary>
+            <param name="entity"></param>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._RoleRepository.PopulateRecord(Microsoft.Data.SqlClient.SqlDataReader)">
+            <summary>
+            PopulateRecord override for The _Role entity.
+            </summary>
+        </member>
+        <member name="T:WebApi_Core.Repositories._UserRepository">
+            <summary>
+            Data repository for _User database table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.#ctor(System.String)">
+            <summary>
+            Data repository for the _User database table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.FindByUsernameAndHashedPassword_Async(System.String,System.String)">
+            <summary>
+            Non generic function to fetch user by username and password
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.GetByEntityID_Async(System.String)">
+            <summary>
+            Get single _User by its unique ID
+            </summary>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.GetByUserID_Async(System.Guid)">
+            <summary>
+            Get single _User by its unique ID
+            </summary>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.GetBy_UserID_Async(System.Guid)">
+            <summary>
+            Get single _User by its unique ID
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.Update_Async(WebApi_Core.Entities._User,System.Guid)">
+            <summary>
+            Fix Paswordhash interaction
+            </summary>
+            <param name="entity"></param>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.ChangePassword_Async(WebApi_Core.Entities._User,System.Guid)">
+            <summary>
+            Fix Paswordhash interaction
+            </summary>
+            <param name="entity"></param>
+            <param name="logedInUserID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRepository.PopulateRecord(Microsoft.Data.SqlClient.SqlDataReader)">
+            <summary>
+            PopulateRecord override for the _User entity.
+            Yes an automapper function could be prudent here but for the sake of this example I decided to go with manual mapping.
+            </summary>
+            <param name="reader"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi_Core.Repositories._UserRoleRepository">
+            <summary>
+            Data repository for _UserRole database table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRoleRepository.#ctor(System.String)">
+            <summary>
+            Data repository for the _UserRole database table.
+            </summary>
+        </member>
+        <member name="M:WebApi_Core.Repositories._UserRoleRepository.PopulateRecord(Microsoft.Data.SqlClient.SqlDataReader)">
+            <summary>
+            PopulateRecord override for the _User entity.
+            </summary>
+            <param name="reader"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

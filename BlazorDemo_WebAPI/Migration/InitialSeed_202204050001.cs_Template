@@ -1,0 +1,16 @@
+﻿using FluentMigrator;
+
+namespace BlazorDemo_WebAPI.Migration
+{
+    [Migration(202104050001)]
+    public class InitialSeed_202204050001 : MigrationBase
+    {
+        public override void Down()
+        {
+        }
+
+        public override void Up()
+        {
+        }
+    }
+}

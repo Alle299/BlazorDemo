@@ -1,0 +1,103 @@
+﻿@page "/user/delete/{_userId:guid}"
+@using BlazorDemo_BlazorUI.Models
+@using Newtonsoft.Json;
+@using System.Text;
+@using System.Net.Http.Headers;
+@inject HttpClient Http;
+@inject NavigationManager NavigationManager;
+@inject LoginResult loginResult;
+@inject IConfiguration configuration;
+@inject IJSRuntime JS;
+
+
+<h1>Remove User</h1>
+<hr />
+<EditForm Model="@_user" OnValidSubmit="RemoveUser">
+    <DataAnnotationsValidator />
+    <div class="row my-3">
+        <label for="Name" class="col-sm-1 pt-2 control-label">UserName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.UserName" />
+        </div>
+        <ValidationMessage For="@(() => _user.UserName)" />
+    </div>
+    <div class="row my-3">
+        <label for="FirstName" class="col-sm-1 pt-2 control-label">FirstName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.FirstName" />
+        </div>
+        <ValidationMessage For="@(() => _user.FirstName)" />
+    </div>
+    <div class="row my-3">
+        <label for="LastName" class="col-sm-1 pt-2 control-label">LastName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.LastName" />
+        </div>
+        <ValidationMessage For="@(() => _user.LastName)" />
+    </div>
+    <div class="row my-3">
+        <label for="Email" class="col-sm-1 pt-2 control-label">Removed</label>
+        <div class="col-sm-3">
+            <InputDate Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="_user.Removed"
+                        min="@DateTime.Today" />
+
+        </div>
+        <ValidationMessage For="@(() => _user.Email)"  />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Remove User</button>&nbsp;&nbsp;
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+@code {
+    protected string backendAPIUrl = "";
+    protected string MyErrorMessage = " ";
+    protected string MyConfirmationMessage = " ";
+
+    [Parameter]
+    public Guid _userId { get; set; }
+    _User _user = new _User();
+    protected override async Task OnParametersSetAsync()
+    {
+        backendAPIUrl = configuration["BackendAPISettings:BackendAPIUrl"] ?? "";
+
+        // add the JWT bearer token to the header
+        Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+
+        // Grab ApiResult onbject from remote API - /CoreApi/_User/all_Users
+        ApiResultModel? answer = await Http.GetFromJsonAsync<ApiResultModel>(backendAPIUrl + "/CoreApi/_User/details/" + _userId);
+        if (answer != null && answer.Success)
+        {
+            _user = JsonConvert.DeserializeObject<_User>(answer?.Result?[0].ToString());
+        }
+    }
+
+    protected async Task RemoveUser()
+    {
+        // Can not be empty.
+        _user.PasswordHash = "Blank";
+
+        // add the JWT bearer token to the header
+        Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+
+        // Put _User to Api to update database entity.
+        var update_Answer = await Http.PutAsJsonAsync(backendAPIUrl + "/CoreApi/_User/remove_User", _user);
+        var response = await update_Answer.Content.ReadAsStringAsync();
+        if (update_Answer.IsSuccessStatusCode)
+        {
+            MyConfirmationMessage = $"User {_user.UserName} removes successfully.";
+        } else
+        {
+            MyConfirmationMessage = "Not logged in or unauthorized access or connection issue.";
+        }
+
+        // return to _UserDetails page
+        NavigationManager.NavigateTo($"/fetchuserdetails/{MyErrorMessage}/{MyConfirmationMessage}");
+    }
+
+    void Cancel()
+    {
+        MyConfirmationMessage = "";
+        NavigationManager.NavigateTo("/fetchuserdetails");
+    }
+}

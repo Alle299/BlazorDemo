@@ -1,0 +1,104 @@
+﻿@inherits LayoutComponentBase
+@using BlazorDemo_BlazorUI.Models;
+@using Newtonsoft.Json;
+@using System.Text;
+@using System.Net.Http.Headers;
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject IConfiguration configuration;
+@inject IJSRuntime JS;
+@inject LoginResult loginResult;
+
+<PageTitle>BlazorDemo</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <div class="col-lg-5" style="font-size: 14px">
+                @if (loginResult.success == true)
+                {
+                    <label for="Name" class="control-label" style="color: green">Loged in as: @loginResult.UserName</label>
+                } else {
+                    <label for="Name" class="control-label" style="color: red">@loginResult.ErrorMessage</label>
+                }
+            </div>
+
+            <div class="col-lg-7" style="font-size: 12px;">
+                <EditForm Model="@loginModel" OnValidSubmit="LoginUser">
+                <DataAnnotationsValidator />
+                <div class="row">
+                    <div class="col-md-1 mx-2 pt-2">
+                            <label for="Name" class="control-label">UserName:&nbsp;</label>
+                    </div>
+                    <div class="col-sm-3">
+                            <InputText class="form-control" @bind-Value="loginModel.username" style="font-size: 12px" />
+                        <ValidationMessage For="@(() => loginModel.username)" />
+                    </div>
+
+                    <div class="col-md-1 mx-18 pt-2">
+                        <label for="Name" class="control-label">Password:&nbsp;</label>
+                    </div>
+                    <div class="col-sm-3">
+                            <InputText class="form-control" @bind-Value="loginModel.password" style="font-size: 12px" />
+                        <ValidationMessage For="@(() => loginModel.password)" />
+                    </div>
+
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary" style="font-size: 12px">Login</button>
+                            &nbsp;&nbsp;
+                            @if (String.IsNullOrWhiteSpace(loginResult.jwtBearer) == false)
+                            {
+                                <button type="submit" class="btn btn-danger" style="font-size: 12px" @onclick="LogoutUser">Login out</button>
+                            }
+                    </div>
+                </div>
+                </EditForm>
+            </div>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+@code {
+    protected LoginModel loginModel = new LoginModel();
+    protected string backendAPIUrl = "";
+
+    protected async Task LoginUser()
+    {
+        backendAPIUrl = configuration["BackendAPISettings:BackendAPIUrl"] ?? "";
+
+        // Get Login Data to retrive JWT Bearer token for authentication
+        // Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+        HttpResponseMessage add_Response = await Http.PostAsJsonAsync(backendAPIUrl + "/CoreApi/_Auth/login", loginModel);
+        if (add_Response.IsSuccessStatusCode)
+        {
+            ApiResultModel apiResultModel = await add_Response.Content.ReadFromJsonAsync<ApiResultModel>();
+            loginResult.jwtBearer = apiResultModel.jwtBearer;
+            loginResult.UserName = loginModel.username;
+            loginResult.success = apiResultModel.Success;
+            loginResult.ErrorMessage = apiResultModel.ErrorMessage;
+
+        } else
+        {
+            loginResult.jwtBearer = "";
+            loginResult.UserName = "";
+            loginResult.success = false;
+            loginResult.ErrorMessage = "Failed to login at this time.";
+        }
+    }
+
+    protected async Task LogoutUser()
+    {
+        loginResult.jwtBearer = "";
+        loginResult.UserName = "";
+        loginResult.success = false;
+        loginResult.ErrorMessage = "";
+    }
+
+}

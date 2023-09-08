@@ -1,0 +1,10 @@
+﻿.settingsbutton {
+	display: inline-block;
+	border: none;
+	width: 52px;
+	height: 64px;
+	background-image: url('~/images/Settings.png');
+	background-color: transparent;
+	transform: scale(0.75);
+	transform-origin: left;
+}

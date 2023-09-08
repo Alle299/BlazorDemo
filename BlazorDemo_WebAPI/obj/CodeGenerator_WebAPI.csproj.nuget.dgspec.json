@@ -1,0 +1,124 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\allew\\Source\\Repos\\CodeGenerator_IV\\CodeGenerator_WebAPI\\CodeGenerator_WebAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\allew\\Source\\Repos\\CodeGenerator_IV\\CodeGenerator_WebAPI\\CodeGenerator_WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\allew\\Source\\Repos\\CodeGenerator_IV\\CodeGenerator_WebAPI\\CodeGenerator_WebAPI.csproj",
+        "projectName": "CodeGenerator_WebAPI",
+        "projectPath": "C:\\Users\\allew\\Source\\Repos\\CodeGenerator_IV\\CodeGenerator_WebAPI\\CodeGenerator_WebAPI.csproj",
+        "packagesPath": "C:\\Users\\allew\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\allew\\Source\\Repos\\CodeGenerator_IV\\CodeGenerator_WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\allew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.151, )"
+            },
+            "DapperPlus": {
+              "target": "Package",
+              "version": "[1.1.0.2, )"
+            },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Abstractions": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Console": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Runner.SQLite": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

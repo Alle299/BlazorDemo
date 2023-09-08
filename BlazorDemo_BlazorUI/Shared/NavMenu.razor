@@ -1,0 +1,52 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorDemo</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item mx-1">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home pt-1" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item mx-1">
+            <NavLink class="nav-link" href="factpage">
+                <span class="oi oi-list-rich pt-1" aria-hidden="true"></span> Fact page
+            </NavLink>
+        </div>
+
+        <div class="nav-item mx-1">
+            <div class="dropdown show">
+                <a class="btn btn-warning dropdown-toggle oi oi-cog w-100 pt-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    &nbsp;&nbsp;&nbsp;Settings
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color: rebeccapurple">
+                    <a class="dropdown-item" href="fetchroledetails"><span class="oi oi-list-rich" aria-hidden="true"></span> _Role</a>
+                    <a class="dropdown-item" href="fetchuserdetails"><span class="oi oi-list-rich" aria-hidden="true"></span> _User</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool state = false;
+
+    private void ToggleDropDown()
+        => this.state = !this.state;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

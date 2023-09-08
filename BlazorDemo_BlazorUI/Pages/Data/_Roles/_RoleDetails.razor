@@ -1,0 +1,144 @@
+﻿@page "/fetchroledetails/{MyErrorMessage?}/{MyConfirmationMessage?}"
+@using BlazorDemo_BlazorUI.Models
+@using Newtonsoft.Json
+@using System.Net.Http.Headers;
+@inject HttpClient Http
+@inject IConfiguration configuration;
+@inject LoginResult loginResult;
+
+<h1>Role Data</h1>
+<p>Blazor CRUD operation</p>
+
+@if (String.IsNullOrWhiteSpace(MyErrorMessage) == false)
+{
+    <div class="row">
+    <div class="mt-2" style="color:red">@MyErrorMessage</div>
+    </div>
+}
+@if (String.IsNullOrWhiteSpace(MyConfirmationMessage) == false)
+{
+    <div class="row">
+    <div class="mt-2 " style="color:green">@MyConfirmationMessage</div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <a href='/role/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Role
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search role by name"
+        @bind="SearchString" @bind:event="oninput" @onkeyup="FilterRole" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times">Reset</i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (roleList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>RoleName</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in roleList)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>
+                        <a href='/role/edit/@role._RoleID' class="btn btn-outline-info" role="button">
+                            Edit
+                        </a>
+                        <a href='/role/delete/@role._RoleID' class="btn btn-outline-danger" role="button">
+                            Remove
+                        </a>
+                        <a href='/user/changepassword/@role._RoleID' class="btn btn-outline-warning" role="button">
+                            Change password
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+@code {
+    [Parameter]
+    public string? MyErrorMessage { get; set; }
+    [Parameter]
+    public string MyConfirmationMessage { get; set; }
+
+    protected string backendAPIUrl = "";
+    protected List<_Role> roleList = new();
+    protected List<_Role> searchRoleData = new();
+    protected _Role role = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        backendAPIUrl = configuration["BackendAPISettings:BackendAPIUrl"];
+        await GetRole();
+    }
+
+    protected async Task GetRole()
+    {
+        try
+        {
+            // add the JWT bearer token to the header
+            Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+            // Grab ApiResult onbject from remote API - /CoreApi/_User/all_Users
+            ApiResultModel? answer = await Http.GetFromJsonAsync<ApiResultModel>(backendAPIUrl +"/CoreApi/_Role/all_Roles");
+
+            if (answer != null && answer.Success)
+            {
+                List<_Role> roleList = JsonConvert.DeserializeObject<List<_Role>>(answer?.Result?.ToString());
+                searchRoleData = roleList;
+            }
+        }
+        catch
+        {
+            MyConfirmationMessage = "Not logged in or unauthorized access.";
+        }
+    }
+
+    protected void FilterRole()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            roleList = searchRoleData
+                .Where(x => x.Name.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+                .ToList();
+        }
+        else
+        {
+            roleList = searchRoleData;
+        }
+    }
+
+    protected void DeleteConfirm(Guid _userID)
+    {
+        role = roleList.FirstOrDefault(x => x._RoleID == _userID);
+    }
+
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        roleList = searchRoleData;
+    }
+}

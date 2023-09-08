@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <NoWarn>1701;1702;1587</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningsNotAsErrors></WarningsNotAsErrors>
+    <NoWarn>1701;1702;1587</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\_AuthController.cs.old" />
+    <None Remove="Controllers\_RoleController.cs.old" />
+    <None Remove="Controllers\_TestController.cs.old" />
+    <None Remove="Controllers\_UserController.cs.old" />
+    <None Remove="Migration\InitialSeed_202204050001.cs_Template" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migration\InitialSeed_202204050001.cs_Template" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.143" />
+    <PackageReference Include="FluentMigrator" Version="3.3.2" />
+    <PackageReference Include="FluentMigrator.Abstractions" Version="3.3.2" />
+    <PackageReference Include="FluentMigrator.Console" Version="3.3.2" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+    <PackageReference Include="FluentMigrator.Runner.SQLite" Version="3.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.19" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+</Project>

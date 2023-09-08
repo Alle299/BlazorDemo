@@ -1,0 +1,81 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BlazorDemo_BlazorUI
+build_property.RootNamespace = BlazorDemo_BlazorUI
+build_property.ProjectDir = C:\Users\allew\Source\Repos\BlazorDemo\BlazorDemo_BlazorUI\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\allew\Source\Repos\BlazorDemo\BlazorDemo_BlazorUI
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/DatabaseManager/DatabaseManager.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YWJhc2VNYW5hZ2VyXERhdGFiYXNlTWFuYWdlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Data/_Roles/_RoleDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVxfUm9sZXNcX1JvbGVEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Data/_Users/AddUpdate_User.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVxfVXNlcnNcQWRkVXBkYXRlX1VzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Data/_Users/Delete_User.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVxfVXNlcnNcRGVsZXRlX1VzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Data/_Users/Password_User.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVxfVXNlcnNcUGFzc3dvcmRfVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Data/_Users/_UserDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVxfVXNlcnNcX1VzZXJEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/FactPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0jec6xnah7
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-po1ksyf7f3
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/allew/Source/Repos/BlazorDemo/BlazorDemo_BlazorUI/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

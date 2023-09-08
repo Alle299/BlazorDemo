@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "SCaXGvBdgpKmq4JhhJYBNcxP5gPdqMg+PD13gUSSj9VRAi55o5v6dfLzHhyrtXjk6PbEG7V+t0AzLaN8Q/UH8A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\allew\\.nuget\\packages\\dapper\\2.0.151\\dapper.2.0.151.nupkg.sha512",
+    "C:\\Users\\allew\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

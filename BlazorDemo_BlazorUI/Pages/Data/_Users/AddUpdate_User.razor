@@ -1,0 +1,220 @@
+﻿@page "/user/add"
+@page "/user/edit/{_userId:guid}"
+@using BlazorDemo_BlazorUI.Models
+@using Newtonsoft.Json;
+@using System.Text;
+@using System.Net.Http.Headers;
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject LoginResult loginResult;
+@inject IConfiguration configuration;
+@inject IJSRuntime JS;
+
+<h1>@Title User</h1>
+<hr />
+<EditForm Model="@_user" OnValidSubmit="SaveUser">
+    <DataAnnotationsValidator />
+    <div class="row my-3">
+        <label for="Name" class="col-sm-1 pt-2 control-label">UserName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.UserName" />
+        </div>
+        <ValidationMessage For="@(() => _user.UserName)" />
+    </div>
+    <div class="row my-3">
+        <label for="FirstName" class="col-sm-1 pt-2 control-label">FirstName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.FirstName" />
+        </div>
+        <ValidationMessage For="@(() => _user.FirstName)" />
+    </div>
+    <div class="row my-3">
+        <label for="LastName" class="col-sm-1 pt-2 control-label">LastName</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.LastName" />
+        </div>
+        <ValidationMessage For="@(() => _user.LastName)" />
+    </div>
+    <div class="row my-3">
+        <label for="Email" class="col-sm-1 pt-2 control-label">E-mail</label>
+        <div class="col-sm-3">
+            <InputText class="form-control" @bind-Value="_user.Email" />
+        </div>
+        <ValidationMessage For="@(() => _user.Email)" />
+    </div>
+    @if (_userId.ToString() == "00000000-0000-0000-0000-000000000000")
+    {
+        <div class="row my-3">
+            <label for="Password" class="col-sm-1 pt-2 control-label">Password</label>
+            <div class="col-sm-3">
+                <InputText class="form-control" @bind-Value="_user.PasswordHash" />
+            </div>
+            <ValidationMessage For="@(() => _user.PasswordHash)" />
+        </div>
+    }
+    <div class="row my-3">
+        <label for="Email" class="col-sm-1 pt-2 control-label">Roles</label>
+        <div class="col-sm-3">
+            <select class="rounded-3 overflow-hidden p-1 w-100" @ref="_selectReference" @onchange="OnSelectionChanged" multiple>
+                @foreach (var role in _rolesList)
+                {
+                    <option value="@role._RoleID" selected="@Model.SelectedOptions.Contains(role._RoleID.ToString())">@role.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+@code {
+    protected string backendAPIUrl = "";
+    protected string MyErrorMessage = " ";
+    protected string MyConfirmationMessage = " ";
+    private ElementReference _selectReference;
+
+    //set the initial data
+    protected override async Task OnInitializedAsync()
+    {
+        backendAPIUrl = configuration["BackendAPISettings:BackendAPIUrl"] ?? "";
+        Model = new TestModel() { SelectedOptions = new HashSet<string>() { } };
+        _rolesList = new List<_Role>();
+
+        // Grab ForeignKeyData lists
+        // Get all Roles
+        try
+        {
+            ApiResultModel? answer_roles = await Http.GetFromJsonAsync<ApiResultModel>(backendAPIUrl + "/CoreApi/_Role/All_Roles");
+            if (answer_roles != null && answer_roles.Success)
+            {
+                _rolesList = JsonConvert.DeserializeObject<List<_Role>>(answer_roles?.Result?.ToString());
+            }
+        } catch (Exception ex)
+        {
+            MyConfirmationMessage = "Not logged in or unauthorized access.";
+            // return to _UserDetails page
+            NavigationManager.NavigateTo($"/fetchuserdetails/{MyErrorMessage}/{MyConfirmationMessage}");
+        }
+    }
+
+    [Parameter]
+    public Guid _userId { get; set; }
+    protected string Title = "Add";
+    protected _User _user = new _User();
+    protected List<_Role> _rolesList = new List<_Role>();
+    protected List<_Role> _rolesListSelected = new List<_Role>();
+    protected override async Task OnParametersSetAsync()
+    {
+        //backendAPIUrl = configuration["BackendAPISettings:BackendAPIUrl"] ?? "";
+
+        if (_userId.ToString() != "00000000-0000-0000-0000-000000000000")
+        {
+            Title = "Edit";
+            // add the JWT bearer token to the header
+            Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+            // Grab ApiResult onbject from remote API - /CoreApi/_User/all_Users
+            ApiResultModel? answer = await Http.GetFromJsonAsync<ApiResultModel>(backendAPIUrl + "/CoreApi/_User/details/" + _userId);
+            if (answer != null && answer.Success)
+            {
+                _user = JsonConvert.DeserializeObject<_User>(answer?.Result?[0].ToString());
+
+                // Get foreign key attribute
+                Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+                ApiResultModel? answer_fk_Role = await Http.GetFromJsonAsync<ApiResultModel>(backendAPIUrl + "/CoreApi/_Role/GetRoleNamesByUserId/" + _userId);
+                if (answer_fk_Role != null && answer_fk_Role.Success)
+                {
+                    _rolesListSelected = JsonConvert.DeserializeObject<List<_Role>>(answer_fk_Role?.Result?.ToString());
+                    foreach (var item in _rolesListSelected)
+                    {
+                        Model.SelectedOptions.Add(item._RoleID.ToString());
+                    }
+                }
+            }
+        } else
+        {
+            Title = "Add";
+        }
+    }
+
+    private TestModel Model;
+    private class TestModel
+    {
+        public HashSet<string> SelectedOptions { get; set; }
+    }
+
+    private async Task OnSelectionChanged(ChangeEventArgs eventArgs)
+    {
+        var selection = await GetSelections(_selectReference);
+        Model.SelectedOptions = selection;
+    }
+
+    public async Task<HashSet<string>> GetSelections(ElementReference elementReference)
+    {
+        return (await JS.InvokeAsync<List<string>>("getSelectedValues", _selectReference)).ToHashSet();
+    }
+
+
+    protected async Task SaveUser()
+    {
+        // add the JWT bearer token to the header
+        Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginResult.jwtBearer);
+
+        // Add or Upate entity of the _User database table
+        if (_userId.ToString() == "00000000-0000-0000-0000-000000000000")
+        {
+            // Create new Guid for the new User.
+            _user._UserID = Guid.NewGuid();
+
+            // Post _User to API to add to database.
+            HttpResponseMessage add_Answer = await Http.PostAsJsonAsync(backendAPIUrl + "/CoreApi/_User/add_User", _user);
+            var response = await add_Answer.Content.ReadAsStringAsync();
+            if (add_Answer.IsSuccessStatusCode)
+            {
+                MyConfirmationMessage = $"User {_user.UserName} added successfully";
+            }  else
+            {
+                MyErrorMessage = $"Failed to add user {_user.UserName}.";
+            }
+        } else {
+            // Can not be empty.
+            _user.PasswordHash = "Blank";
+
+            // Put _User to Api to update database entity.
+            var update_Answer = await Http.PutAsJsonAsync(backendAPIUrl + "/CoreApi/_User/update_User", _user);
+            var response = await update_Answer.Content.ReadAsStringAsync();
+            if (update_Answer.IsSuccessStatusCode)
+            {
+                MyConfirmationMessage = $"User {_user.UserName} updated successfully";
+            }
+            else
+            {
+                MyErrorMessage = $"Failed to update user {_user.UserName}.";
+            }
+        }
+
+        // Collect foreign key data and Add/Update it based on the form.
+        var additionForForeignkey = new AdditionForForeignkey
+            {
+                TrackerID = _user._UserID.ToString(),
+                AdditionIDs = new List<string>(Model.SelectedOptions)
+            };
+        var foreginKeys_Roles_Answer = await Http.PostAsJsonAsync(backendAPIUrl + "/CoreApi/_UserRole/AddRangeWith_UserID_Async", additionForForeignkey);
+        if (foreginKeys_Roles_Answer.IsSuccessStatusCode)
+        {
+        }
+        else
+        {
+            MyErrorMessage = $"Failed to update user roles for {_user.UserName}.";
+        }
+
+        // return to _UserDetails page
+        NavigationManager.NavigateTo($"/fetchuserdetails/{MyErrorMessage}/{MyConfirmationMessage}");
+    }
+
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/fetchuserdetails");
+    }
+
+}
