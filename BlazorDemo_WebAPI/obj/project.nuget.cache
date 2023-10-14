@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RP2dd0sFbEiz1Y8aHS4dBlPHZwtIFxPrM4LlXTNhYf3oLn7WrgqMtPag/dzhAtUivN2l7uDiE8n+CX4CKum6Tw==",
+  "dgSpecHash": "CVkkdWHbXVKQGL8EvxEvWz/BhKooTm2dwq9srnL2NGzQjkpelwDmoXbSMQj8XANwHHN56LKmMPh887LOYh/E4A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\allew\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\allew\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

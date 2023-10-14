@@ -4754,11 +4754,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
       "projectName": "BlazorDemo_WebAPI",
-      "projectPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
+      "projectPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_WebAPI\\BlazorDemo_WebAPI.csproj",
       "packagesPath": "C:\\Users\\allew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

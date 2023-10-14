@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj": {}
+    "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj": {
+    "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj",
+        "projectUniqueName": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj",
         "projectName": "BlazorDemo_BlazorUI",
-        "projectPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj",
+        "projectPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_BlazorUI\\BlazorDemo_BlazorUI.csproj",
         "packagesPath": "C:\\Users\\allew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo\\BlazorDemo_BlazorUI\\obj\\",
+        "outputPath": "C:\\Users\\allew\\Source\\Repos\\BlazorDemo2\\BlazorDemo_BlazorUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
